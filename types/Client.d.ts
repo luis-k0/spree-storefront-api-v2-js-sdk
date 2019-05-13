@@ -6,7 +6,11 @@ import Countries from './endpoints/Countries';
 import Order from './endpoints/Order';
 import Products from './endpoints/Products';
 import Taxons from './endpoints/Taxons';
-export default class Instance {
+export interface IClientConfig {
+    host?: string;
+}
+declare class Client {
+    host?: string;
     products: Products;
     taxons: Taxons;
     countries: Countries;
@@ -15,5 +19,7 @@ export default class Instance {
     authentication: Authentication;
     account: Account;
     order: Order;
-    constructor(products: Products, taxons: Taxons, countries: Countries, cart: Cart, checkout: Checkout, authentication: Authentication, account: Account, order: Order);
+    constructor(config?: IClientConfig);
+    private addEndpoints;
 }
+export default Client;
